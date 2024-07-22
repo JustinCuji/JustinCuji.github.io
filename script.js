@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
         fetch('get_data.php')
             .then(response => response.json())
             .then(data => {
-                document.getElementById('tempValue').textContent = Temperatura: ${data.temperature} °C;
-                document.getElementById('pulseValue').textContent = Ritmo Cardíaco: ${data.pulse} bpm;
+                document.getElementById('tempValue').textContent = `Temperatura: ${data.temperature} °C`;
+                document.getElementById('pulseValue').textContent = `Ritmo Cardíaco: ${data.pulse} bpm`;
                 updateChart(data.pulseHistory);
             })
             .catch(error => console.error('Error:', error));
@@ -38,5 +38,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    setInterval(fetchData, 5000); // Actualiza cada 5 segundos
+    fetchData(); // Fetch data initially
+    setInterval(fetchData, 5000); // Fetch data every 5 seconds
 });
